@@ -197,3 +197,10 @@ GitHub: https://github.com/gigahitz7/2ndweek-quiz-game
 ├── state.json       # 플레이 횟수/마지막 점수 저장
 ├── requirements.txt # 사용 라이브러리 명세
 └── README.md        # 프로젝트 설명
+## 📸 실행 화면
+
+### 증거 화면
+![증거 화면](evidence/evidence.png)
+
+### 게임 실행 화면
+![게임 실행 화면](evidence/evidence1.png)
