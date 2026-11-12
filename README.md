@@ -186,3 +186,14 @@ docs: README 트러블슈팅 섹션 추가
 GitHub: https://github.com/gigahitz7/2ndweek-quiz-game
 개발 기간: 2025년 11월
 ⭐ 재미있었다면 Star를 눌러주세요! ⭐
+
+## 파일 구조
+
+2ndweek-quiz-game/
+├── main.py          # 메인 실행 파일
+├── quiz.py          # Quiz/QuizGame 클래스
+├── quizzes.json     # 퀴즈 데이터 저장
+├── best_score.json  # 최고 점수 저장
+├── state.json       # 플레이 횟수/마지막 점수 저장
+├── requirements.txt # 사용 라이브러리 명세
+└── README.md        # 프로젝트 설명
