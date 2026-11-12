@@ -6,6 +6,8 @@
 ---
 
 ## 📸 실행 화면
+
+### 메인 메뉴
 === 파이썬 퀴즈 게임 ===
 🏆 현재 최고 점수: 100점
 📈 총 플레이 횟수: 1회
@@ -15,8 +17,16 @@
 퀴즈 추가
 퀴즈 삭제
 종료
+선택:
+
 code
 📋 복사
+
+### 게임 실행 화면
+![게임 실행 화면](evidence/evidence1.png)
+
+### 증거 화면
+![증거 화면](evidence/evidence.png)
 
 ---
 
@@ -36,12 +46,13 @@ code
 
 ## 📁 파일 구조
 2ndweek-quiz-game/
-│
 ├── main.py # 메인 실행 파일
+├── quiz.py # Quiz/QuizGame 클래스
 ├── quizzes.json # 퀴즈 데이터 저장
 ├── best_score.json # 최고 점수 저장
-├── state.json # 플레이 횟수 & 마지막 점수 저장
-└── README.md # 프로젝트 설명서
+├── state.json # 플레이 횟수/마지막 점수 저장
+├── requirements.txt # 사용 라이브러리 명세
+└── README.md # 프로젝트 설명
 
 code
 📋 복사
@@ -78,15 +89,24 @@ code
 60점 이상	🥈 잘 했어요! 조금만 더 공부해봐요!
 60점 미만	🥉 아쉬워요! 다시 도전해봐요!
 🏗️ 클래스 구조
+클래스 개요
 클래스	주요 책임
 Quiz	퀴즈 1개의 데이터(문제·보기·정답·난이도)를 저장하고 관리
 QuizGame	메뉴 출력, 퀴즈 실행, 파일 저장/로드, 점수 계산 등 게임 전체 흐름 제어
 Quiz 클래스
-퀴즈 1개를 객체로 표현
-속성: question(문제), options(보기), answer(정답), difficulty(난이도)
+퀴즈 1개를 객체로 표현합니다.
+
+속성:
+
+question - 문제
+options - 보기 (리스트)
+answer - 정답 (1~4)
+difficulty - 난이도 (쉬움/보통/어려움)
 QuizGame 클래스
-게임 전체를 관리하는 컨트롤러 역할
+게임 전체를 관리하는 컨트롤러 역할을 합니다.
+
 주요 메서드:
+
 메서드	역할
 run()	메인 메뉴 루프 실행
 start_quiz()	퀴즈 출제 및 채점
@@ -104,7 +124,8 @@ load_state()	state.json 로드하여 게임 시작 시 통계 복원
 입력 검증	QuizGame 메서드 내부	사용자 입력이 숫자인지, 유효 범위인지 확인
 데이터 입출력	save_quizzes() load_quizzes() save_best_score() save_state() load_state()	JSON 파일 읽기/쓰기만 담당
 게임 로직	start_quiz() add_quiz() delete_quiz()	퀴즈 진행·채점·추가·삭제 처리
-분리한 이유
+분리한 이유:
+
 입력 검증과 데이터 저장을 분리하면 → 저장 방식이 바뀌어도 검증 코드를 수정할 필요 없음
 게임 로직을 별도 메서드로 분리하면 → 기능 추가 시 다른 기능에 영향 없이 수정 가능
 🛠️ 사용 기술
@@ -122,11 +143,11 @@ quizzes.json	전체 퀴즈 목록	[{"question": "...", "options": [...], "answer
 best_score.json	최고 점수	{"best_score": 100}
 state.json	플레이 횟수 & 마지막 점수	{"play_count": 3, "last_score": 80}
 💡 배운 점
-클래스(class)를 활용한 객체지향 프로그래밍
-JSON 파일로 데이터 저장 및 불러오기
-threading을 활용한 타이머 구현
-random.sample로 랜덤 출제 구현
-게임 상태(플레이 횟수·마지막 점수)를 파일로 영속 저장하는 방법
+✅ 클래스(class)를 활용한 객체지향 프로그래밍
+✅ JSON 파일로 데이터 저장 및 불러오기
+✅ threading을 활용한 타이머 구현
+✅ random.sample로 랜덤 출제 구현
+✅ 게임 상태(플레이 횟수·마지막 점수)를 파일로 영속 저장하는 방법
 🤔 객체지향 프로그래밍을 선택한 이유
 절차형 vs 객체지향 비교
 구분	절차형 방식	객체지향 방식 (채택)
@@ -139,16 +160,16 @@ QuizGame 클래스로 게임 전체를 묶으면 → 기능이 늘어나도 역�
 나중에 퀴즈 종류가 늘어날 경우 → Quiz 클래스를 상속해서 확장 가능
 🔧 트러블슈팅
 한글이 깨져서 출력되는 문제
-증상
+증상:
 
 code
 📋 복사
 ?????? ???? 출력됨
-원인
+원인:
 
 Python 파일의 인코딩이 UTF-8이 아닌 경우
 Windows 터미널의 기본 인코딩이 CP949(EUC-KR)로 설정된 경우
-해결 방법
+해결 방법:
 
 방법 1 - main.py 상단에 인코딩 선언 추가
 
@@ -162,9 +183,8 @@ bash
 chcp 65001
 방법 3 - VSCode 우측 하단 인코딩을 UTF-8로 변경
 
-code
-📋 복사
 VSCode 우측 하단 → UTF-8 클릭 → Save with Encoding → UTF-8 선택
+
 📝 커밋 메시지 규칙
 이 프로젝트에서 사용한 커밋 메시지 형식입니다.
 
@@ -174,7 +194,7 @@ fix	버그 수정	fix: 한글 깨짐 문제 수정
 docs	문서 수정	docs: README 클래스 설명 추가
 refactor	코드 구조 개선	refactor: Quiz 클래스 분리
 chore	기타 작업	chore: .gitignore 추가
-작성 예시
+작성 예시:
 
 code
 📋 복사
@@ -185,22 +205,5 @@ docs: README 트러블슈팅 섹션 추가
 이름: 진호영
 GitHub: https://github.com/gigahitz7/2ndweek-quiz-game
 개발 기간: 2025년 11월
+
 ⭐ 재미있었다면 Star를 눌러주세요! ⭐
-
-## 파일 구조
-
-2ndweek-quiz-game/
-├── main.py          # 메인 실행 파일
-├── quiz.py          # Quiz/QuizGame 클래스
-├── quizzes.json     # 퀴즈 데이터 저장
-├── best_score.json  # 최고 점수 저장
-├── state.json       # 플레이 횟수/마지막 점수 저장
-├── requirements.txt # 사용 라이브러리 명세
-└── README.md        # 프로젝트 설명
-## 📸 실행 화면
-
-### 증거 화면
-![증거 화면](evidence/evidence.png)
-
-### 게임 실행 화면
-![게임 실행 화면](evidence/evidence1.png)
